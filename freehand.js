@@ -1,6 +1,23 @@
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
+
+let isDrawing = false;
+const pencil = document.getElementById("pencil");
+
+pencil.addEventListener("click", () => {
+  isDrawingRect=false;
+  pencil.style.backgroundColor = "#dcdafa";
+  const main = document.getElementsByClassName("main")[0];
+  main.style.display = "none";
+  pencil.style.cursor = "crosshair";
+  const canvas = document.getElementById("canvas");
+  canvas.style.display = "flex";
+  canvas.style.cursor = "crosshair";
+  const colorSel = document.getElementsByClassName("color-selector")[0];
+  colorSel.style.display = "flex";
+});
+
 const height = 1080;
 const width = 1920;
 
@@ -13,11 +30,11 @@ const redoButton = document.getElementById("redo");
 const redoButton1 = document.getElementById("redo1");
 const undoStack = [];
 const redoStack = [];
-let isDrawing = false;
+
 let points = [];
 //mouse down start
 canvas.addEventListener("mousedown", () => {
-  isDrawing = true;
+  isDrawing=true
   context.beginPath();
   points = [];
 });
@@ -144,5 +161,4 @@ const grab = document.getElementById("grab");
 grab.addEventListener("click", () => {
   grab.style.backgroundColor = "#dcdafa";
   canvas.style.cursor = "grab";
-  console.log("umesh");
 });

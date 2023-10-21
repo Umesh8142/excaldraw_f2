@@ -1,5 +1,5 @@
 
-const ctx = canvas.getContext("2d");
+// const ctx = canvas.getContext("2d");
 const zoomInButton = document.getElementById("zoom-in");
 const zoomOutButton = document.getElementById("zoom-out");
 
