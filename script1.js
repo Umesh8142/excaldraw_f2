@@ -29,7 +29,7 @@ closeBtn.addEventListener("click", () => {
 const pencil = document.getElementById("pencil");
 
 pencil.addEventListener("click", () => {
-  pencil.style.backgroundColor = "lightgray";
+  pencil.style.backgroundColor = "#dcdafa";
   const main = document.getElementsByClassName("main")[0];
   main.style.display = "none";
   pencil.style.cursor="crosshair"
@@ -44,13 +44,20 @@ pencil.addEventListener("click", () => {
 const drawRect= document.getElementById("drawRect");
 
 drawRect.addEventListener("click", () => {
-  drawRect.style.backgroundColor = "lightgray";
+  drawRect.style.backgroundColor = "#dcdafa";
   const main = document.getElementsByClassName("main")[0];
   main.style.display = "none";
   const canvas = document.getElementById("canvas");
   canvas.style.display = "flex";
-  canvas.style.cursor="crosshair";
+  // canvas.style.cursor="crosshair";
   const colorSel = document.getElementsByClassName("color-selector")[0];
   colorSel.style.display = "flex";
   
 });
+
+
+
+// grabbing
+
+
+  

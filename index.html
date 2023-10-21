@@ -31,18 +31,18 @@
                         lock_open
                     </span></div>
 
-                <div><i class="fa-regular fa-hand"></i></div>
+                <div id="grab"><i class="fa-regular fa-hand"></i></div>
                 <div>
                     <span class="material-symbols-outlined">
                         arrow_selector_tool
                     </span>
                 </div>
-                <div><i class="fa-regular fa-square" id="drawRect"></i></div>
+                <div id="drawRect"><i class="fa-regular fa-square"></i></div>
                 <div><i class="fa-regular fa-circle"></i></div>
                 <div><i class="fa-solid fa-arrow-right"></i></div>
                 <div><i class="fa-solid fa-minus"></i></div>
-                <div>
-                    <span class="material-symbols-outlined" id="pencil">
+                <div id="pencil">
+                    <span class="material-symbols-outlined">
                         edit
                     </span>
                 </div>
@@ -137,13 +137,18 @@
     <footer>
         <div class="left-f">
             <div class="zoom">
-                <span class="material-symbols-outlined" style="border-right: 2px solid lightgrey; padding-right:5px">
-                    remove
-                </span>
+                <div id="zoom-out">
+                    <span class="material-symbols-outlined"
+                        style="border-right: 2px solid lightgrey; padding-right:5px">
+                        remove
+                    </span>
+                </div>
                 40%
-                <span class="material-symbols-outlined" style="border-left: 2px solid lightgrey; padding-left:5px">
-                    add
-                </span>
+                <div id="zoom-in">
+                    <span class="material-symbols-outlined" style="border-left: 2px solid lightgrey; padding-left:5px">
+                        add
+                    </span>
+                </div>
             </div>
             <div class="undo-redo">
                 <div id="undo">
@@ -174,12 +179,16 @@
         <div class="mid">
             <div class="center2">
                 <i class="fa-solid fa-bars"></i>
-                <span class="material-symbols-outlined" id="undo">
-                    undo
-                </span>
-                <span class="material-symbols-outlined">
-                    redo
-                </span>
+                <div id="undo1">
+                    <span class="material-symbols-outlined">
+                        undo
+                    </span>
+                </div>
+                <div id="redo1">
+                    <span class="material-symbols-outlined">
+                        redo
+                    </span>
+                </div>
             </div>
 
         </div>
@@ -453,9 +462,15 @@
         <div class="strokeWidth">
             <p>Stoke width</p>
             <div id="bg-colors">
-                <div id="sw-1"><div style="width: 100%; height: 5%; background-color: black;"></div></div>
-                <div id="sw-2"><div style="width: 100%; height: 20%; background-color: black;" ></div></div>
-                <div id="sw-3"><div style="width: 100%; height: 40%; background-color: black;"></div></div>
+                <div id="sw-1">
+                    <div style="width: 100%; height: 5%; background-color: black;"></div>
+                </div>
+                <div id="sw-2">
+                    <div style="width: 100%; height: 20%; background-color: black;"></div>
+                </div>
+                <div id="sw-3">
+                    <div style="width: 100%; height: 40%; background-color: black;"></div>
+                </div>
             </div>
         </div>
         <div class="opacitylevel">
@@ -476,6 +491,7 @@
 
     <script src="script1.js"></script>
     <script src="canvas.js"></script>
+    <script src="zoom.js"></script>
 </body>
 
 </html>

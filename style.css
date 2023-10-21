@@ -66,6 +66,9 @@ footer {
   border-radius: 5px;
   background-color: white;
 }
+#zoom-in:hover,#zoom-out:hover{
+cursor: pointer;
+}
 .zoom,
 .undo-redo,
 #help,
@@ -99,7 +102,7 @@ footer {
 .center,
 .center2 {
   height: 50px;
-  padding: 15px;
+  padding: 10px;
   border-radius: 10px;
   gap: 25px;
   color: #ababab;
@@ -120,6 +123,14 @@ footer {
 .center >div> i,
 .center >div> span {
   font-size: 22px;
+}
+.center >div{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
 }
 .center >div:hover {
   cursor: pointer;

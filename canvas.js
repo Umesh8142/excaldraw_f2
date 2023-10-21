@@ -8,7 +8,9 @@ canvas.height = height;
 canvas.width = width;
 
 const undoButton = document.getElementById("undo");
+const undoButton1 = document.getElementById("undo1");
 const redoButton = document.getElementById("redo");
+const redoButton1 = document.getElementById("redo1");
 const undoStack = [];
 const redoStack = [];
 let isDrawing = false;
@@ -24,16 +26,20 @@ canvas.addEventListener("mousedown", () => {
 canvas.addEventListener("mouseup", () => {
   if (isDrawing) {
     isDrawing = false;
-    undoStack.push({coord:points.slice(),color:context.strokeStyle,lineWidth:context.lineWidth});
-    redoStack.length = 0;
-    console.log(undoStack) // Clear redo stack
+    undoStack.push({
+      coord: points.slice(),
+      color: context.strokeStyle,
+      lineWidth: context.lineWidth,
+    });
+    redoStack.length = 0; // Clear redo stack
   }
 });
 
 // undo -redo
 undoButton.addEventListener("click", undo);
 redoButton.addEventListener("click", redo);
-
+undoButton1.addEventListener("click", undo);
+redoButton1.addEventListener("click", redo);
 function undo() {
   if (undoStack.length > 0) {
     redoStack.push(undoStack.pop());
@@ -54,6 +60,8 @@ function draw() {
   context.beginPath();
   context.moveTo(points[0].x, points[0].y);
   for (let i = 1; i < points.length; i++) {
+    context.lineCap = "round";
+    context.lineJoin = "round";
     context.lineTo(points[i].x, points[i].y);
   }
   context.stroke();
@@ -72,11 +80,11 @@ canvas.addEventListener("mousemove", (evt) => {
 // redrawing
 function redraw() {
   context.clearRect(0, 0, canvas.width, canvas.height);
-  for (let i=0;i<undoStack.length;i++) {
+  for (let i = 0; i < undoStack.length; i++) {
     context.beginPath();
-    points=undoStack[i].coord;
-    context.strokeStyle=undoStack[i].color
-    context.lineWidth=undoStack[i].lineWidth
+    points = undoStack[i].coord;
+    context.strokeStyle = undoStack[i].color;
+    context.lineWidth = undoStack[i].lineWidth;
     context.moveTo(points[0].x, points[0].y);
     for (let i = 1; i < points.length; i++) {
       context.lineTo(points[i].x, points[i].y);
@@ -85,52 +93,56 @@ function redraw() {
   }
 }
 
-const sw=document.getElementById("sw-1");
-sw.addEventListener("click",()=>{
-  sw.style.backgroundColor=" #e7e6fa"
-  context.lineWidth='1';
-  console.log(context.lineWidth)
-})
+const sw = document.getElementById("sw-1");
+sw.addEventListener("click", () => {
+  sw.style.backgroundColor = " #e7e6fa";
+  context.lineWidth = "1";
+});
 
-const sw1=document.getElementById("sw-2");
-sw1.addEventListener("click",(e)=>{
-  sw1.style.backgroundColor=" #e7e6fa"
-  context.lineWidth='5';
-  console.log(context.lineWidth)
-})
+const sw1 = document.getElementById("sw-2");
+sw1.addEventListener("click", (e) => {
+  sw1.style.backgroundColor = " #e7e6fa";
+  context.lineWidth = "5";
+});
 
-const sw2=document.getElementById("sw-3");
-sw2.addEventListener("click",(e)=>{
-  sw2.style.backgroundColor=" #e7e6fa"
-  context.lineWidth='10';
-  console.log(context.lineWidth)
-})
+const sw2 = document.getElementById("sw-3");
+sw2.addEventListener("click", (e) => {
+  sw2.style.backgroundColor = " #e7e6fa";
+  context.lineWidth = "10";
+});
 
-const bgred=document.getElementById("bg-red");
-const bg_color=document.getElementById("bg");
-bgred.addEventListener("click",()=>{
-  bg_color.style.backgroundColor=bgred.style.backgroundColor;
-  context.strokeStyle=bgred.style.backgroundColor;
-})
+const bgred = document.getElementById("bg-red");
+const bg_color = document.getElementById("bg");
+bgred.addEventListener("click", () => {
+  bg_color.style.backgroundColor = bgred.style.backgroundColor;
+  context.strokeStyle = bgred.style.backgroundColor;
+});
 
-const bgGreen=document.getElementById("bg-green");
-bgGreen.addEventListener("click",()=>{
-  bg_color.style.backgroundColor=bgGreen.style.backgroundColor;
-  context.strokeStyle=bgGreen.style.backgroundColor;
-})
+const bgGreen = document.getElementById("bg-green");
+bgGreen.addEventListener("click", () => {
+  bg_color.style.backgroundColor = bgGreen.style.backgroundColor;
+  context.strokeStyle = bgGreen.style.backgroundColor;
+});
 
-const bgorange=document.getElementById("bg-orange");
-bgorange.addEventListener("click",()=>{
-  bg_color.style.backgroundColor=bgorange.style.backgroundColor;
-  context.strokeStyle=bgorange.style.backgroundColor;
-})
-const bgblue=document.getElementById("bg-blue");
-bgblue.addEventListener("click",()=>{
-  bg_color.style.backgroundColor=bgblue.style.backgroundColor;
-  context.strokeStyle=bgblue.style.backgroundColor;
-})
-const bgblack=document.getElementById("bg-black");
-bgblack.addEventListener("click",()=>{
-  bg_color.style.backgroundColor=bgblack.style.backgroundColor;
-  context.strokeStyle=bgblack.style.backgroundColor;
-})
+const bgorange = document.getElementById("bg-orange");
+bgorange.addEventListener("click", () => {
+  bg_color.style.backgroundColor = bgorange.style.backgroundColor;
+  context.strokeStyle = bgorange.style.backgroundColor;
+});
+const bgblue = document.getElementById("bg-blue");
+bgblue.addEventListener("click", () => {
+  bg_color.style.backgroundColor = bgblue.style.backgroundColor;
+  context.strokeStyle = bgblue.style.backgroundColor;
+});
+const bgblack = document.getElementById("bg-black");
+bgblack.addEventListener("click", () => {
+  bg_color.style.backgroundColor = bgblack.style.backgroundColor;
+  context.strokeStyle = bgblack.style.backgroundColor;
+});
+
+const grab = document.getElementById("grab");
+grab.addEventListener("click", () => {
+  grab.style.backgroundColor = "#dcdafa";
+  canvas.style.cursor = "grab";
+  console.log("umesh");
+});
