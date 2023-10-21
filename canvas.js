@@ -24,8 +24,9 @@ canvas.addEventListener("mousedown", () => {
 canvas.addEventListener("mouseup", () => {
   if (isDrawing) {
     isDrawing = false;
-    undoStack.push(points.slice());
-    redoStack.length = 0; // Clear redo stack
+    undoStack.push({coord:points.slice(),color:context.strokeStyle,lineWidth:context.lineWidth});
+    redoStack.length = 0;
+    console.log(undoStack) // Clear redo stack
   }
 });
 
@@ -71,8 +72,11 @@ canvas.addEventListener("mousemove", (evt) => {
 // redrawing
 function redraw() {
   context.clearRect(0, 0, canvas.width, canvas.height);
-  for (const points of undoStack) {
+  for (let i=0;i<undoStack.length;i++) {
     context.beginPath();
+    points=undoStack[i].coord;
+    context.strokeStyle=undoStack[i].color
+    context.lineWidth=undoStack[i].lineWidth
     context.moveTo(points[0].x, points[0].y);
     for (let i = 1; i < points.length; i++) {
       context.lineTo(points[i].x, points[i].y);
@@ -102,11 +106,31 @@ sw2.addEventListener("click",(e)=>{
   console.log(context.lineWidth)
 })
 
-const bg=document.getElementById("bg-red");
+const bgred=document.getElementById("bg-red");
 const bg_color=document.getElementById("bg");
-bg.addEventListener("click",()=>{
-  bg_color.style.backgroundColor=bg.style.backgroundColor;
-  context.strokeStyle=bg.style.backgroundColor;
-  console.log(bg.style.backgroundColor)
-  console.log(bg_color.style.backgroundColor)
+bgred.addEventListener("click",()=>{
+  bg_color.style.backgroundColor=bgred.style.backgroundColor;
+  context.strokeStyle=bgred.style.backgroundColor;
+})
+
+const bgGreen=document.getElementById("bg-green");
+bgGreen.addEventListener("click",()=>{
+  bg_color.style.backgroundColor=bgGreen.style.backgroundColor;
+  context.strokeStyle=bgGreen.style.backgroundColor;
+})
+
+const bgorange=document.getElementById("bg-orange");
+bgorange.addEventListener("click",()=>{
+  bg_color.style.backgroundColor=bgorange.style.backgroundColor;
+  context.strokeStyle=bgorange.style.backgroundColor;
+})
+const bgblue=document.getElementById("bg-blue");
+bgblue.addEventListener("click",()=>{
+  bg_color.style.backgroundColor=bgblue.style.backgroundColor;
+  context.strokeStyle=bgblue.style.backgroundColor;
+})
+const bgblack=document.getElementById("bg-black");
+bgblack.addEventListener("click",()=>{
+  bg_color.style.backgroundColor=bgblack.style.backgroundColor;
+  context.strokeStyle=bgblack.style.backgroundColor;
 })
