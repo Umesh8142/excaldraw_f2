@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+}
+.card{
+    position: absolute;
+    top: 100px;
+    left: 25px;
+    padding: 10px;
+    width: 200px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgb(237, 237, 237);
+
+}
+.row-1,.row-2,.row-3{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: rgb(194, 193, 193);
+    margin-bottom: 15px;
+    border-bottom:1px solid rgb(206, 203, 203) ;
+}
+#save,#collab-2,#help-2>div,#open>div,#export-1>div,#delete,#git,#discord,#twitter,#darkmode>div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgb(146, 146, 146);
+    
+}
+i,span{
+    font-size: 12px;
+}
+#i{
+    font-size: 18px;
+}
+
+#open,#help-2,#export-1,#darkmode{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#gift{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgb(241, 57, 213);
+}
+input{
+    padding: 10px;
+    height: 10px;
+    border-radius: 8px;
+    border: 1px solid rgb(194, 193, 193);
+    font-size: 12px;
+}
+p{
+    font-size: 12px;
+    color: rgb(139, 139, 139) ;
+}
+#colorfill{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#colorfill>div{
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid rgb(194, 193, 193);
+}
+.row-3{
+    border-bottom: none;
+}

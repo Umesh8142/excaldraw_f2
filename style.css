@@ -1,0 +1,283 @@
+* {
+  margin: 0px;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+nav {
+  position: fixed;
+  top: 0px;
+  padding: 20px;
+  margin: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+footer {
+  position: fixed;
+  bottom: 20px;
+  padding: 20px;
+  margin: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.right,
+.right-f,
+.left-f {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+@font-face {
+  font-family: "Virgil";
+  src: url("Virgil.woff2");
+  font-display: swap;
+}
+.left,
+.center,
+.center2,
+#library,
+#collab,
+#help,
+.undo-redo,
+.zoom {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  padding: 8px;
+  height: 40px;
+  gap: 10px;
+  color: #626161;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: white;
+}
+.zoom,
+.undo-redo,
+#help,
+#library {
+  background-color: #e7e6fa;
+  color: #626161;
+}
+#help:hover {
+  cursor: pointer;
+  background-color: #deddf7;
+}
+#help > #help-btn {
+  color: rgb(8, 8, 8);
+  font-size: 20px;
+}
+.left:hover {
+  background-color: rgba(244, 236, 236, 0.904);
+  cursor: pointer;
+}
+
+.mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.mid > p {
+  color: lightgrey;
+  font-size: 12px;
+}
+.center,
+.center2 {
+  height: 50px;
+  padding: 15px;
+  border-radius: 10px;
+  gap: 25px;
+  color: #ababab;
+  background-color: white;
+  box-shadow: 5px 5px 8px rgb(227, 227, 227);
+}
+#collab {
+  background-color: #6965db;
+  color: white;
+}
+#collab > span,
+#library > span {
+  font-size: 16px;
+}
+.undo-redo > span,
+#left > i,
+.zoom > span,
+.center >div> i,
+.center >div> span {
+  font-size: 22px;
+}
+.center >div:hover {
+  cursor: pointer;
+}
+#help > span {
+  font-size: 16px;
+  color: #ababab;
+}
+.logo {
+  width: 30px;
+  color: #6965db;
+}
+.name-1 {
+  margin-top: 50px;
+  display: flex;
+  gap: 20px;
+}
+.excalidraw > svg {
+  height: 30px;
+  color: #190064;
+}
+.main {
+  position: relative;
+  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 70%;
+}
+#canvas {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+#main-2 {
+  font-family: "Virgil";
+  font-size: 20px;
+  color: #b8b8b8;
+}
+.tools {
+  margin-top: 20px;
+  width: 30%;
+}
+.tools > ul {
+  list-style-type: none;
+}
+.tools > ul > li {
+  font-family: Arial, Helvetica, sans-serif;
+  display: block;
+  padding: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.tools > ul > li > i,
+.tools > ul > li > div > span,
+.tools > ul > li > div > i,
+.tools > ul > li > span {
+  font-size: 15px;
+  color: #ababab;
+}
+input{
+  display: none;
+}
+#sw-1,#sw-2,#sw-3{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#sw-1:hover,#sw-2:hover,#sw-3:hover{
+cursor: pointer;
+}
+
+#undo:hover,#redo:hover{
+  cursor: pointer;
+}
+.tools > ul > li:hover {
+  background-color: #e5e3e35d;
+  cursor: pointer;
+  border-radius: 10px;
+}
+#r1,
+#r2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#pick {
+  position: absolute;
+  top: 10px;
+  text-align: center;
+}
+#pick > p {
+  font-family: "Virgil";
+  font-size: 18px;
+  color: #b8b8b8;
+}
+#export {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+}
+#export > p {
+  font-family: "Virgil";
+  font-size: 18px;
+  color: #b8b8b8;
+}
+
+#shortcut {
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+  text-align: center;
+}
+#shortcut > p {
+  font-family: "Virgil";
+  font-size: 18px;
+  color: #b8b8b8;
+}
+.max-bg {
+  display: none;
+}
+
+.card-help {
+  visibility: hidden;
+}
+.card {
+  visibility: hidden;
+}
+
+#colors>div:hover{
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  #pick,
+  #export,
+  #shortcut,
+  #left,
+  .right,
+  .mid > p {
+    display: none;
+  }
+  nav {
+    justify-content: space-around;
+  }
+  footer {
+    display: none;
+  }
+  .max-bg {
+    display: block;
+    margin-bottom: 20px;
+    width: 90%;
+  }
+  .center2 {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
