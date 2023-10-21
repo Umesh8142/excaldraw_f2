@@ -1,12 +1,15 @@
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
-
 let isDrawing = false;
 const pencil = document.getElementById("pencil");
 
 pencil.addEventListener("click", () => {
-  isDrawingRect=false;
+  // isDrawingRect = false;
+   const card = document.getElementsByClassName("card")[0];
+  const bar3 = document.getElementById("left");
+  card.style.visibility = "hidden";
+  bar3.style.backgroundColor = "white";
   pencil.style.backgroundColor = "#dcdafa";
   const main = document.getElementsByClassName("main")[0];
   main.style.display = "none";
@@ -18,11 +21,8 @@ pencil.addEventListener("click", () => {
   colorSel.style.display = "flex";
 });
 
-const height = 1080;
-const width = 1920;
-
-canvas.height = height;
-canvas.width = width;
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
 
 const undoButton = document.getElementById("undo");
 const undoButton1 = document.getElementById("undo1");
@@ -34,7 +34,7 @@ const redoStack = [];
 let points = [];
 //mouse down start
 canvas.addEventListener("mousedown", () => {
-  isDrawing=true
+  isDrawing = true;
   context.beginPath();
   points = [];
 });
@@ -87,9 +87,8 @@ function draw() {
 canvas.addEventListener("mousemove", (evt) => {
   if (!isDrawing) return;
   var rect = canvas.getBoundingClientRect();
-  (scaleX = canvas.width / rect.width), (scaleY = canvas.height / rect.height);
-  const x = (evt.clientX - rect.left) * scaleX;
-  const y = (evt.clientY - rect.top) * scaleY;
+  const x = (evt.clientX - rect.left) ;
+  const y = (evt.clientY - rect.top) ;
   points.push({ x, y });
   draw();
 });
@@ -103,7 +102,7 @@ function redraw() {
     context.strokeStyle = undoStack[i].color;
     context.lineWidth = undoStack[i].lineWidth;
     context.moveTo(points[0].x, points[0].y);
-    for (let i = 1; i < points.length; i++) {
+    for (let i = 0; i < points.length; i++) {
       context.lineTo(points[i].x, points[i].y);
     }
     context.stroke();
