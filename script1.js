@@ -32,12 +32,34 @@ closeBtn.addEventListener("click", () => {
 });
 
 
+// drawing
 
+let isPencilActive = false;
+const pencil = document.getElementById("pencil");
 
-
-
-
-// grabbing
+pencil.addEventListener("click", onPencilClick );
+function onPencilClick() {
+  pencil.classList.toggle("active");
+  isPencilActive = !isPencilActive;
+  if(isPencilActive){
+    canvas.style.cursor = "crosshair";
+    canvas.addEventListener("mousedown",onMouseDown);
+  }
+  else{
+    canvas.style.cursor="auto"
+    canvas.removeEventListener("mousedown",onMouseDown);
+  }
+  const card = document.getElementsByClassName("card")[0];
+  const bar3 = document.getElementById("left");
+  card.style.visibility = "hidden";
+  bar3.style.backgroundColor = "white";
+  const main = document.getElementsByClassName("main")[0];
+  main.style.display = "none";
+  canvas.style.display = "flex";
+  
+  const colorSel = document.getElementsByClassName("color-selector")[0];
+  colorSel.style.display = "flex";
+}
 
 
   

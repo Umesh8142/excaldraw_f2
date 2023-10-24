@@ -132,8 +132,18 @@ cursor: pointer;
   justify-content: center;
   border-radius: 6px;
 }
-.center >div:hover {
+/* .center >div:hover {
   cursor: pointer;
+} */
+
+#pencil:hover{
+  cursor: pointer;
+  
+}
+
+.active{
+  background-color: #dcdafa;
+  color: black;
 }
 #help > span {
   font-size: 16px;
@@ -194,7 +204,7 @@ cursor: pointer;
   font-size: 15px;
   color: #ababab;
 }
-input{
+#input{
   display: none;
 }
 #sw-1,#sw-2,#sw-3{
