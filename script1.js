@@ -1,9 +1,9 @@
 const bar3 = document.getElementById("left");
 bar3.addEventListener("click", appendTools);
 function appendTools() {
-  const colsel= document.getElementsByClassName('color-selector')[0];
-  colsel.style.display="none"
-  
+  const colsel = document.getElementsByClassName("color-selector")[0];
+  colsel.style.display = "none";
+
   const card = document.getElementsByClassName("card")[0];
   card.style.backgroundColor = "white";
   if (card.style.visibility === "visible") {
@@ -31,23 +31,21 @@ closeBtn.addEventListener("click", () => {
   cardHelp.style.visibility = "hidden";
 });
 
-
-// drawing
+//free hand drawing
 
 let isPencilActive = false;
 const pencil = document.getElementById("pencil");
 
-pencil.addEventListener("click", onPencilClick );
+pencil.addEventListener("click", onPencilClick);
 function onPencilClick() {
   pencil.classList.toggle("active");
   isPencilActive = !isPencilActive;
-  if(isPencilActive){
+  if (isPencilActive) {
     canvas.style.cursor = "crosshair";
-    canvas.addEventListener("mousedown",onMouseDown);
-  }
-  else{
-    canvas.style.cursor="auto"
-    canvas.removeEventListener("mousedown",onMouseDown);
+    canvas.addEventListener("mousedown", onMouseDown);
+  } else {
+    canvas.style.cursor = "auto";
+    canvas.removeEventListener("mousedown", onMouseDown);
   }
   const card = document.getElementsByClassName("card")[0];
   const bar3 = document.getElementById("left");
@@ -56,10 +54,32 @@ function onPencilClick() {
   const main = document.getElementsByClassName("main")[0];
   main.style.display = "none";
   canvas.style.display = "flex";
-  
   const colorSel = document.getElementsByClassName("color-selector")[0];
   colorSel.style.display = "flex";
 }
 
+// rectangle
+let isRectActive = false;
+const Rect = document.getElementById("drawRect");
 
-  
+Rect.addEventListener("click", onRectClick);
+function onRectClick() {
+  Rect.classList.toggle("active");
+  isRectActive = !isRectActive;
+  if (isRectActive) {
+    canvas.style.cursor = "crosshair";
+    canvas.addEventListener("mousedown", drawRectDown);
+  } else {
+    canvas.style.cursor = "auto";
+    canvas.removeEventListener("mousedown", drawRectDown);
+  }
+  const card = document.getElementsByClassName("card")[0];
+  const bar3 = document.getElementById("left");
+  card.style.visibility = "hidden";
+  bar3.style.backgroundColor = "white";
+  const main = document.getElementsByClassName("main")[0];
+  main.style.display = "none";
+  canvas.style.display = "flex";
+  const colorSel = document.getElementsByClassName("color-selector")[0];
+  colorSel.style.display = "flex";
+}

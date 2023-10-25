@@ -4,12 +4,14 @@ canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
 let drawingCol = "black";
-const opacity = document.getElementById("opacity");
+let lineWidth = "2";
 
-const undoButton = document.getElementById("undo");
-const undoButton1 = document.getElementById("undo1");
-const redoButton = document.getElementById("redo");
-const redoButton1 = document.getElementById("redo1");
+// opacity changing
+const opacity = document.getElementById("opacity");
+opacity.addEventListener("change", () => {
+  context.globalAlpha = opacity.value;
+});
+
 const undoStack = [];
 const redoStack = [];
 
@@ -23,9 +25,9 @@ function onMouseDown() {
 }
 
 // mouseup end
-
 function onMouseUp() {
   undoStack.push({
+    object: "freehand",
     coord: points.slice(),
     color: context.strokeStyle,
     lineWidth: context.lineWidth,
@@ -36,24 +38,6 @@ function onMouseUp() {
 }
 
 // undo & redo
-undoButton.addEventListener("click", undo);
-redoButton.addEventListener("click", redo);
-undoButton1.addEventListener("click", undo);
-redoButton1.addEventListener("click", redo);
-
-function undo() {
-  if (undoStack.length > 0) {
-    redoStack.push(undoStack.pop());
-    redraw();
-  }
-}
-
-function redo() {
-  if (redoStack.length > 0) {
-    undoStack.push(redoStack.pop());
-    redraw();
-  }
-}
 
 // mouse moving draw
 const colPicker = document.getElementById("colorPicker");
@@ -64,11 +48,10 @@ colPicker.addEventListener("change", () => {
 function draw() {
   context.beginPath();
   context.strokeStyle = drawingCol;
+  context.lineWidth = lineWidth;
   context.moveTo(points[0].x, points[0].y);
   context.globalAlpha = opacity.value;
   for (let i = 1; i < points.length; i++) {
-    context.lineCap = "round";
-    context.lineJoin = "round";
     context.lineTo(points[i].x, points[i].y);
   }
   context.stroke();
@@ -81,44 +64,27 @@ function onMouseMove(evt) {
   draw();
 }
 
-// redrawing
-function redraw() {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  for (let i = 0; i < undoStack.length; i++) {
-    context.beginPath();
-    context.globalAlpha = undoStack[i].lineOpacity;
-    points = undoStack[i].coord;
-    context.strokeStyle = undoStack[i].color;
-    context.lineWidth = undoStack[i].lineWidth;
-    context.moveTo(points[0].x, points[0].y);
-    for (let i = 0; i < points.length; i++) {
-      context.lineTo(points[i].x, points[i].y);
-    }
-    context.stroke();
-  }
-}
-
 const sw = document.getElementById("sw-1");
 sw.addEventListener("click", () => {
-  sw.style.backgroundColor = " #e7e6fa";
-  context.lineWidth = "1";
+  sw.classList.toggle("active");
+  lineWidth = "2";
 });
 
 const sw1 = document.getElementById("sw-2");
 sw1.addEventListener("click", (e) => {
-  sw1.style.backgroundColor = " #e7e6fa";
-  context.lineWidth = "5";
+  sw1.classList.toggle("active");
+  lineWidth = "5";
 });
 
 const sw2 = document.getElementById("sw-3");
 sw2.addEventListener("click", (e) => {
-  sw2.style.backgroundColor = " #e7e6fa";
-  context.lineWidth = "10";
+  sw2.classList.toggle("active");
+  lineWidth = "10";
 });
 
 const bgred = document.getElementById("bg-red");
 bgred.addEventListener("click", () => {
-  drawingCol =(bgred.style.backgroundColor);
+  drawingCol = bgred.style.backgroundColor;
 });
 
 const bgGreen = document.getElementById("bg-green");
@@ -144,4 +110,3 @@ bgblack.addEventListener("click", () => {
 //   grab.style.backgroundColor = "#dcdafa";
 //   canvas.style.cursor = "grab";
 // });
-
