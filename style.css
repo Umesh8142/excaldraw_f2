@@ -136,9 +136,9 @@ cursor: pointer;
   cursor: pointer;
 } */
 
-#pencil:hover{
+#pencil:hover,#drawRect:hover{
   cursor: pointer;
-  
+  background-color: #c6ecf6;
 }
 
 .active{

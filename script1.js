@@ -3,15 +3,13 @@ bar3.addEventListener("click", appendTools);
 function appendTools() {
   const colsel = document.getElementsByClassName("color-selector")[0];
   colsel.style.display = "none";
-
+  bar3.classList.toggle('active');
   const card = document.getElementsByClassName("card")[0];
   card.style.backgroundColor = "white";
   if (card.style.visibility === "visible") {
     card.style.visibility = "hidden";
-    bar3.style.backgroundColor = "white";
   } else {
     card.style.visibility = "visible";
-    bar3.style.backgroundColor = "#dcdafa";
   }
 }
 

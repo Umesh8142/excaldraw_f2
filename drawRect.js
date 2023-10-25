@@ -31,6 +31,7 @@ function onMouseMoveRect(evt) {
   context.globalAlpha = opacity.value;
   context.strokeRect(startX, startY, endx, endy);
   drawRectangles();
+  // redraw();
 }
 function onMouseUpRect(evt) {
   canvas.removeEventListener("mousemove", onMouseMoveRect);

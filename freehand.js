@@ -63,6 +63,10 @@ function onMouseMove(evt) {
   points.push({ x, y });
   draw();
 }
+canvas.addEventListener("mouseleave", () => {
+  canvas.removeEventListener("mouseup", onMouseUp);
+});
+
 
 const sw = document.getElementById("sw-1");
 sw.addEventListener("click", () => {
