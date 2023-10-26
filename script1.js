@@ -1,9 +1,10 @@
+// menu v=bar
 const bar3 = document.getElementById("left");
 bar3.addEventListener("click", appendTools);
 function appendTools() {
   const colsel = document.getElementsByClassName("color-selector")[0];
   colsel.style.display = "none";
-  bar3.classList.toggle('active');
+  bar3.classList.toggle("active");
   const card = document.getElementsByClassName("card")[0];
   card.style.backgroundColor = "white";
   if (card.style.visibility === "visible") {
@@ -13,11 +14,10 @@ function appendTools() {
   }
 }
 
+// help card
 const help = document.getElementById("help");
 help.addEventListener("click", () => {
   document.body.style.backgroundColor = "lightgray";
-  // document.body.style.zIndex=0;
-
   const cardHelp = document.getElementsByClassName("card-help")[0];
   cardHelp.style.visibility = "visible";
 });
@@ -107,6 +107,7 @@ function onEraserClick() {
   colorSel.style.display = "flex";
 }
 
+// circle drawnig
 
 let isCircleActive = false;
 const circle = document.getElementById("circle");
@@ -121,6 +122,31 @@ function onCircleClick() {
   } else {
     canvas.style.cursor = "auto";
     canvas.removeEventListener("mousedown", centerOfCircle);
+  }
+  const card = document.getElementsByClassName("card")[0];
+  const bar3 = document.getElementById("left");
+  card.style.visibility = "hidden";
+  bar3.style.backgroundColor = "white";
+  const main = document.getElementsByClassName("main")[0];
+  main.style.display = "none";
+  canvas.style.display = "flex";
+  const colorSel = document.getElementsByClassName("color-selector")[0];
+  colorSel.style.display = "flex";
+}
+
+let isLineActive = false;
+const line = document.getElementById("line");
+
+line.addEventListener("click", onLineClick);
+function onLineClick() {
+  line.classList.toggle("active");
+  isLineActive = !isLineActive;
+  if (isLineActive) {
+    canvas.style.cursor = "crosshair";
+    canvas.addEventListener("mousedown", startLine);
+  } else {
+    canvas.style.cursor = "auto";
+    canvas.removeEventListener("mousedown", startLine);
   }
   const card = document.getElementsByClassName("card")[0];
   const bar3 = document.getElementById("left");

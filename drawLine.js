@@ -1,35 +1,45 @@
-const canvas = document.getElementById("canvas");
-const context = canvas.getContext("2d");
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-canvas.addEventListener("mousedown", (evt) => {
-  context.beginPath(); 
-  const x = evt.clientX ;
-  const y = evt.clientY;
-  context.strokeStyle="red";
-  context.moveTo(x, y);
-});
-canvas.addEventListener("mouseup", (evt) => {
-  const x = evt.clientX;
-  const y = evt.clientY;
-  context.lineTo(x,y);
+let x1, y1;
+let x2, y2;
+let lines = [];
+function startLine(evt) {
+  x1 = evt.clientX;
+  y1 = evt.clientY;
+  context.strokeStyle = drawingCol;
+  context.lineWidth = 2;
+  canvas.addEventListener("mousemove", changeLineDim);
+  canvas.addEventListener("mouseup", endLine);
+}
+function drawLines() {
+  if (lines.length == 0) return;
+  lines.forEach((item) => {
+    context.moveTo(item.x1, item.y1);
+    context.lineTo(item.x2, item.y2);
+    context.stroke();
+  });
+}
+function changeLineDim(evt) {
+  context.beginPath();
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  x2 = evt.clientX;
+  y2 = evt.clientY;
+  context.moveTo(x1, y1);
+  context.lineTo(x2, y2);
+  context.stroke();
+  drawLines()
+  
+}
+
+function endLine(evt) {
+  canvas.removeEventListener("mousemove", changeLineDim);
+  x2 = evt.clientX;
+  y2 = evt.clientY;
+  // context.beginPath();
+  context.moveTo(x1, y1);
+  context.lineTo(x2, y2);
   context.stroke();
   context.closePath();
-});
-
-
-pencil.addEventListener("click", () => {
-  // isDrawingRect = false;
-  const card = document.getElementsByClassName("card")[0];
-  const bar3 = document.getElementById("left");
-  card.style.visibility = "hidden";
-  bar3.style.backgroundColor = "white";
-  pencil.style.backgroundColor = "#dcdafa";
-  const main = document.getElementsByClassName("main")[0];
-  main.style.display = "none";
-  const canvas = document.getElementById("canvas");
-  canvas.style.display = "flex";
-  canvas.style.cursor = "crosshair";
-  const colorSel = document.getElementsByClassName("color-selector")[0];
-  colorSel.style.display = "flex";
-});
+  lines.push({ x1: x1, y1: y1, x2: x2, y2: y2 });
+}
+canvas.addEventListener("mouseleave",()=>{
+  canvas.removeEventListener("mouseup",endLine)
+})

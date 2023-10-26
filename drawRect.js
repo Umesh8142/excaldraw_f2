@@ -9,7 +9,7 @@ function drawRectDown(e) {
   canvas.addEventListener("mousemove", onMouseMoveRect);
 }
 // Redraw all rectangles
-function drawRectangles(object) {
+function drawRectangles() {
   rectangles.forEach((object) => {
     context.strokeStyle = object.color;
     context.lineWidth = object.lineWidth;
