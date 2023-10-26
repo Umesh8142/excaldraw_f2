@@ -38,7 +38,7 @@
                     </span>
                 </div>
                 <div id="drawRect"><i class="fa-regular fa-square"></i></div>
-                <div><i class="fa-regular fa-circle"></i></div>
+                <div id="circle"><i class="fa-regular fa-circle"></i></div>
                 <div><i class="fa-solid fa-arrow-right"></i></div>
                 <div><i class="fa-solid fa-minus"></i></div>
                 <div id="pencil" class="">
@@ -47,7 +47,7 @@
                     </span>
                 </div>
                 <div><i class="fa-solid fa-a"></i></div>
-                <div><i class="fa-solid fa-eraser"></i></div>
+                <div id="eraser"><i class="fa-solid fa-eraser"></i></div>
                 <div><i class="fa-solid fa-shapes"></i></div>
             </div>
             <p>To move canvas, hold mouse wheel or spacebar while dragging, or use the hand tool</p>
@@ -179,7 +179,9 @@
     <section class="max-bg">
         <div class="mid">
             <div class="center2">
-                <i class="fa-solid fa-bars"></i>
+                <div id="menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
                 <div id="undo1">
                     <span class="material-symbols-outlined">
                         undo
@@ -489,11 +491,15 @@
         </div>
     </div>
 
-    <!-- <script src="drawLine.js"></script> -->
+    
     <script src="freehand.js"></script>
     <script src="drawRect.js"></script>
+    <script src="eraser.js"></script>
+    <!-- <script src="drawCircle.js"></script> -->
+    <script src="drawLine.js"></script>
     <script src="script1.js"></script>
     <script src="Undo&Redo.js"></script>
+
     <!-- <script src="zoom.js"></script> -->
 
 

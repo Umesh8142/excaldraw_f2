@@ -81,3 +81,54 @@ function onRectClick() {
   const colorSel = document.getElementsByClassName("color-selector")[0];
   colorSel.style.display = "flex";
 }
+// erasing
+let isEraserActive = false;
+const Eraser = document.getElementById("eraser");
+
+Eraser.addEventListener("click", onEraserClick);
+function onEraserClick() {
+  Eraser.classList.toggle("active");
+  isEraserActive = !isEraserActive;
+  if (isEraserActive) {
+    canvas.style.cursor = "crosshair";
+    canvas.addEventListener("mousedown", onMouseDownEraser);
+  } else {
+    canvas.style.cursor = "auto";
+    canvas.removeEventListener("mousedown", onMouseDownEraser);
+  }
+  const card = document.getElementsByClassName("card")[0];
+  const bar3 = document.getElementById("left");
+  card.style.visibility = "hidden";
+  bar3.style.backgroundColor = "white";
+  const main = document.getElementsByClassName("main")[0];
+  main.style.display = "none";
+  canvas.style.display = "flex";
+  const colorSel = document.getElementsByClassName("color-selector")[0];
+  colorSel.style.display = "flex";
+}
+
+
+let isCircleActive = false;
+const circle = document.getElementById("circle");
+
+circle.addEventListener("click", onCircleClick);
+function onCircleClick() {
+  circle.classList.toggle("active");
+  isCircleActive = !isCircleActive;
+  if (isCircleActive) {
+    canvas.style.cursor = "crosshair";
+    canvas.addEventListener("mousedown", centerOfCircle);
+  } else {
+    canvas.style.cursor = "auto";
+    canvas.removeEventListener("mousedown", centerOfCircle);
+  }
+  const card = document.getElementsByClassName("card")[0];
+  const bar3 = document.getElementById("left");
+  card.style.visibility = "hidden";
+  bar3.style.backgroundColor = "white";
+  const main = document.getElementsByClassName("main")[0];
+  main.style.display = "none";
+  canvas.style.display = "flex";
+  const colorSel = document.getElementsByClassName("color-selector")[0];
+  colorSel.style.display = "flex";
+}

@@ -49,8 +49,8 @@ function draw() {
   context.beginPath();
   context.strokeStyle = drawingCol;
   context.lineWidth = lineWidth;
-  context.moveTo(points[0].x, points[0].y);
   context.globalAlpha = opacity.value;
+  context.moveTo(points[0].x, points[0].y);
   for (let i = 1; i < points.length; i++) {
     context.lineTo(points[i].x, points[i].y);
   }
@@ -66,7 +66,6 @@ function onMouseMove(evt) {
 canvas.addEventListener("mouseleave", () => {
   canvas.removeEventListener("mouseup", onMouseUp);
 });
-
 
 const sw = document.getElementById("sw-1");
 sw.addEventListener("click", () => {
