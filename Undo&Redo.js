@@ -28,9 +28,13 @@ function redraw() {
   for (let i = 0; i < undoStack.length; i++) {
     if (undoStack[i].object === "freehand") {
       freeHand(undoStack[i]);
-    } else if (undoStack[i].object === "rectangle") {
+    } 
+    else if (undoStack[i].object === "rectangle") {
       reDrawRect(undoStack[i]);
+    }else if(undoStack[i].object === "line"){
+      reDrawLine(undoStack[i]);
     }
+
   }
 }
 function freeHand(object) {
@@ -51,4 +55,15 @@ function reDrawRect(object) {
   context.globalAlpha = object.lineOpacity;
   points = object.coord;
   context.strokeRect(points.startX, points.startY, points.endx, points.endy);
+}
+
+function reDrawLine(object) {
+  context.strokeStyle = object.color;
+  context.lineWidth = object.lineWidth;
+  context.globalAlpha = object.lineOpacity;
+  points = object.coord;
+  context.beginPath()
+  context.moveTo(points.x1,points.y1);
+  context.lineTo(points.x2, points.y2);
+  context.stroke()
 }
