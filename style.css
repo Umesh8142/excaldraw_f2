@@ -135,7 +135,7 @@ cursor: pointer;
   cursor: pointer;
 } */
 
-#pencil:hover,#drawRect:hover,#line:hover,#circle:hover{
+#pencil:hover,#drawRect:hover,#line:hover,#circle:hover,#mouse:hover{
   cursor: pointer;
   background-color: #c6ecf6;
 }

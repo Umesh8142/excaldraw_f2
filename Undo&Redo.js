@@ -87,5 +87,5 @@ function reDrawCircle(object) {
   context.stroke()
   // context.fill();
   
-  console.log("circle drawn")
+  // console.log("circle drawn")
 }

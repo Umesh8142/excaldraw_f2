@@ -30,12 +30,13 @@ closeBtn.addEventListener("click", () => {
 });
 
 // shapes and freehand
-
+let isDragging = false;
 let isPencilActive = false;
 let isRectActive = false;
 let isEraserActive = false;
 let isCircleActive = false;
 let isLineActive = false;
+const mouse = document.getElementById("mouse");
 
 // shapes ID's
 const pencil = document.getElementById("pencil");
@@ -43,6 +44,7 @@ const Rect = document.getElementById("drawRect");
 const Eraser = document.getElementById("eraser");
 const circle = document.getElementById("circle");
 const line = document.getElementById("line");
+mouse.addEventListener("click", onMouseClick);
 
 // freehand drawing
 
@@ -77,6 +79,11 @@ function onPencilClick() {
     Eraser.classList.remove("active");
     canvas.removeEventListener("mousedown", onMouseDownEraser);
   }
+  if (isDragging) {
+    isDragging = !isDragging;
+    mouse.classList.remove("active");
+    canvas.removeEventListener("mousedown", locateEle);
+  }
   const card = document.getElementsByClassName("card")[0];
   const bar3 = document.getElementById("left");
   card.style.visibility = "hidden";
@@ -101,6 +108,11 @@ function onRectClick() {
     canvas.style.cursor = "auto";
     canvas.removeEventListener("mousedown", drawRectDown);
   }
+  if (isPencilActive) {
+    isPencilActive = !isPencilActive;
+    pencil.classList.remove("active");
+    canvas.removeEventListener("mousedown", onMouseDown);
+  }
   if (isCircleActive) {
     isCircleActive = !isCircleActive;
     circle.classList.remove("active");
@@ -111,15 +123,15 @@ function onRectClick() {
     line.classList.remove("active");
     canvas.removeEventListener("mousedown", startLine);
   }
-  if (isPencilActive) {
-    isPencilActive = !isPencilActive;
-    pencil.classList.remove("active");
-    canvas.removeEventListener("mousedown", onMouseDown);
-  }
   if (isEraserActive) {
     isEraserActive = !isEraserActive;
     Eraser.classList.remove("active");
     canvas.removeEventListener("mousedown", onMouseDownEraser);
+  }
+  if (isDragging) {
+    isDragging = !isDragging;
+    mouse.classList.remove("active");
+    canvas.removeEventListener("mousedown", locateEle);
   }
   const card = document.getElementsByClassName("card")[0];
   const bar3 = document.getElementById("left");
@@ -144,25 +156,30 @@ function onEraserClick() {
     canvas.style.cursor = "auto";
     canvas.removeEventListener("mousedown", onMouseDownEraser);
   }
-  if (isLineActive) {
-    isLineActive = !isLineActive;
-    line.classList.remove("active");
-    canvas.removeEventListener("mousedown", startLine);
-  }
   if (isPencilActive) {
     isPencilActive = !isPencilActive;
     pencil.classList.remove("active");
     canvas.removeEventListener("mousedown", onMouseDown);
+  }
+  if (isRectActive) {
+    isRectActive = !isRectActive;
+    Rect.classList.remove("active");
+    canvas.removeEventListener("mousedown", drawRectDown);
   }
   if (isCircleActive) {
     isCircleActive = !isCircleActive;
     circle.classList.remove("active");
     canvas.removeEventListener("mousedown", centerOfCircle);
   }
-  if (isRectActive) {
-    isRectActive = !isRectActive;
-    Rect.classList.remove("active");
-    canvas.removeEventListener("mousedown", drawRectDown);
+  if (isLineActive) {
+    isLineActive = !isLineActive;
+    line.classList.remove("active");
+    canvas.removeEventListener("mousedown", startLine);
+  }
+  if (isDragging) {
+    isDragging = !isDragging;
+    mouse.classList.remove("active");
+    canvas.removeEventListener("mousedown", locateEle);
   }
   const card = document.getElementsByClassName("card")[0];
   const bar3 = document.getElementById("left");
@@ -208,6 +225,11 @@ function onCircleClick() {
     Rect.classList.remove("active");
     canvas.removeEventListener("mousedown", drawRectDown);
   }
+  if (isDragging) {
+    isDragging = !isDragging;
+    mouse.classList.remove("active");
+    canvas.removeEventListener("mousedown", locateEle);
+  }
   const card = document.getElementsByClassName("card")[0];
   const bar3 = document.getElementById("left");
   card.style.visibility = "hidden";
@@ -251,6 +273,11 @@ function onLineClick() {
     Rect.classList.remove("active");
     canvas.removeEventListener("mousedown", drawRectDown);
   }
+  if (isDragging) {
+    isDragging = !isDragging;
+    mouse.classList.remove("active");
+    canvas.removeEventListener("mousedown", locateEle);
+  }
   const card = document.getElementsByClassName("card")[0];
   const bar3 = document.getElementById("left");
   card.style.visibility = "hidden";
@@ -283,3 +310,41 @@ save.addEventListener(
   },
   false
 );
+
+// translate
+
+function onMouseClick() {
+  mouse.classList.toggle("active");
+  isDragging = !isDragging;
+  if (isDragging) {
+    canvas.style.cursor = "auto";
+    canvas.addEventListener("mousedown", locateEle);
+  } else {
+    canvas.removeEventListener("mousedown", locateEle);
+  }
+  if (isRectActive) {
+    isRectActive = !isRectActive;
+    Rect.classList.remove("active");
+    canvas.removeEventListener("mousedown", drawRectDown);
+  }
+  if (isPencilActive) {
+    isPencilActive = !isPencilActive;
+    pencil.classList.remove("active");
+    canvas.removeEventListener("mousedown", onMouseDown);
+  }
+  if (isCircleActive) {
+    isCircleActive = !isCircleActive;
+    circle.classList.remove("active");
+    canvas.removeEventListener("mousedown", centerOfCircle);
+  }
+  if (isEraserActive) {
+    isEraserActive = !isEraserActive;
+    Eraser.classList.remove("active");
+    canvas.removeEventListener("mousedown", onMouseDownEraser);
+  }
+  if (isLineActive) {
+    isLineActive = !isLineActive;
+    line.classList.remove("active");
+    canvas.removeEventListener("mousedown", startLine);
+  }
+}

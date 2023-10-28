@@ -63,7 +63,7 @@ function draWCircle(evt) {
     lineOpacity: opacity.value,
     fill: context.fillStyle,
   });
-  console.log(undoStack);
+  // console.log(undoStack);
 }
 canvas.addEventListener("mouseleave", () => {
   canvas.removeEventListener("mouseup", draWCircle);
