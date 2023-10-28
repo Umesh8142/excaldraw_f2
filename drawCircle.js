@@ -9,7 +9,7 @@ let radius;
 function centerOfCircle(evt) {
   CenterX = evt.clientX;
   CenterY = evt.clientY;
-  context.beginPath();
+  // context.clearRect(0, 0, canvas.width, canvas.height);
   canvas.addEventListener("mousemove", changeRadius);
   canvas.addEventListener("mouseup", draWCircle);
 }

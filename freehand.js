@@ -4,7 +4,7 @@ canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 // context.fillRect(0, 0, canvas.width, canvas.height);
 // context.fillStyle = 'black';
-
+context.fillStyle = "white";
 let drawingCol = "black";
 let lineWidth = "2";
 
@@ -13,6 +13,14 @@ const opacity = document.getElementById("opacity");
 opacity.addEventListener("change", () => {
   context.globalAlpha = opacity.value;
 });
+
+
+const lineWidthBtn = document.getElementById("LineWidth");
+lineWidthBtn.addEventListener("change", () => {
+  lineWidth = lineWidthBtn.value;
+  console.log(context.lineWidth)
+});
+
 context.lineJoin = "round";
 context.lineCap = "round";
 

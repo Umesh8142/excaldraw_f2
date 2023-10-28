@@ -173,7 +173,7 @@ cursor: pointer;
   height: 70%;
 }
 #canvas {
-  background:transparent;
+  /* background:red; */
   width: 100vw;
   height: 100vh;
   display: none;
@@ -256,6 +256,10 @@ cursor: pointer;
   bottom: 20px;
   right: 50px;
   text-align: center;
+}
+.Line_Width{
+  display: flex;
+  flex-direction: column;
 }
 #shortcut > p {
   font-family: "Virgil";

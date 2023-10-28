@@ -262,17 +262,22 @@ function onLineClick() {
   colorSel.style.display = "flex";
 }
 
-
 // save as pdf
 
 const save = document.getElementById("save");
 
-save.addEventListener("click", () => {
-  var imgData = canvas.toDataURL("image/jpeg", 1.0);
-  var pdf = new jsPDF('p', 'px');
-  canvas.backgroundColor="white";
-  var width = pdf.internal.pageSize.width;    
-  var height = pdf.internal.pageSize.height;
-  pdf.addImage(imgData, 'JPEG', 0, 0,width,height);
-  pdf.save("download.pdf");
-}, false);
+save.addEventListener(
+  "click",
+  () => {
+    canvas.backgroundColor = "red";
+    context.fillStyle = "white";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    var imgData = canvas.toDataURL("image/jpeg", -1.0);
+    var pdf = new jsPDF("p", "px");
+    var width = pdf.internal.pageSize.width;
+    var height = pdf.internal.pageSize.height;
+    pdf.addImage(imgData, "JPEG", 0, 0, width, height);
+    pdf.save("download.pdf");
+  },
+  false
+);
