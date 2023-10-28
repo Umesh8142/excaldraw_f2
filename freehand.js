@@ -2,17 +2,17 @@ const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
-// context.fillRect(0, 0, canvas.width, canvas.height);
-// context.fillStyle = 'black';
+
+canvas.style.backgroundColor = 'white';
 context.fillStyle = "white";
 let drawingCol = "black";
 let lineWidth = "2";
 
 // opacity changing
-const opacity = document.getElementById("opacity");
-opacity.addEventListener("change", () => {
-  context.globalAlpha = opacity.value;
-});
+// const opacity = document.getElementById("opacity");
+// opacity.addEventListener("change", () => {
+//   context.globalAlpha = opacity.value;
+// });
 
 
 const lineWidthBtn = document.getElementById("LineWidth");

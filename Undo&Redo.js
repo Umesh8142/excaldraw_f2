@@ -79,7 +79,7 @@ function reDrawCircle(object) {
   context.strokeStyle = object.color;
   context.lineWidth = object.lineWidth;
   context.globalAlpha = object.lineOpacity;
-  context.fillStyle=object.fill;
+  // context.fillStyle='white';
   points = object.coord;
   context.beginPath()
   context.arc(points.CenterX, points.CenterY, points.radius, 0, Math.PI * 2);

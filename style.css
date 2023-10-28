@@ -173,7 +173,7 @@ cursor: pointer;
   height: 70%;
 }
 #canvas {
-  /* background:red; */
+  background:white;
   width: 100vw;
   height: 100vh;
   display: none;
