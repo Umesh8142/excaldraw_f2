@@ -2,6 +2,8 @@ const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
+// context.fillRect(0, 0, canvas.width, canvas.height);
+// context.fillStyle = 'black';
 
 let drawingCol = "black";
 let lineWidth = "2";
@@ -11,13 +13,15 @@ const opacity = document.getElementById("opacity");
 opacity.addEventListener("change", () => {
   context.globalAlpha = opacity.value;
 });
+context.lineJoin = "round";
+context.lineCap = "round";
 
 const undoStack = [];
 const redoStack = [];
 
 let points;
 
-//mouse down start
+// mouse down start
 function onMouseDown() {
   points = [];
   canvas.addEventListener("mousemove", onMouseMove);
@@ -33,19 +37,28 @@ function onMouseUp() {
     lineWidth: context.lineWidth,
     lineOpacity: opacity.value,
   });
+  context.closePath();
   redoStack.length = 0; // Clear redo stack
   canvas.removeEventListener("mousemove", onMouseMove);
 }
 
-// undo & redo
 
 // mouse moving draw
+
+function onMouseMove(evt) {
+  const x = evt.clientX;
+  const y = evt.clientY;
+  points.push({ x, y });
+  draw(points)
+  // redraw();
+}
 const colPicker = document.getElementById("colorPicker");
 colPicker.addEventListener("change", () => {
   drawingCol = colPicker.value;
 });
 
-function draw() {
+function draw(points) {
+  console.log("umesh");
   context.beginPath();
   context.strokeStyle = drawingCol;
   context.lineWidth = lineWidth;
@@ -54,15 +67,10 @@ function draw() {
   for (let i = 1; i < points.length; i++) {
     context.lineTo(points[i].x, points[i].y);
   }
-  context.stroke();
+  context.stroke(); 
 }
 
-function onMouseMove(evt) {
-  const x = evt.clientX;
-  const y = evt.clientY;
-  points.push({ x, y });
-  draw();
-}
+
 canvas.addEventListener("mouseleave", () => {
   canvas.removeEventListener("mouseup", onMouseUp);
 });
@@ -85,6 +93,10 @@ sw2.addEventListener("click", (e) => {
   lineWidth = "10";
 });
 
+const bgblack = document.getElementById("bg-black");
+bgblack.addEventListener("click", () => {
+  drawingCol = bgblue.style.backgroundColor;
+});
 const bgred = document.getElementById("bg-red");
 bgred.addEventListener("click", () => {
   drawingCol = bgred.style.backgroundColor;
@@ -103,10 +115,7 @@ const bgblue = document.getElementById("bg-blue");
 bgblue.addEventListener("click", () => {
   drawingCol = bgblue.style.backgroundColor;
 });
-const bgblack = document.getElementById("bg-black");
-bgblack.addEventListener("click", () => {
-  drawingCol = bgblue.style.backgroundColor;
-});
+
 
 // const grab = document.getElementById("grab");
 // grab.addEventListener("click", () => {

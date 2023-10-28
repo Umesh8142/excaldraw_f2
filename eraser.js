@@ -19,6 +19,7 @@ function onMouseUpEraser() {
   });
   redoStack.length = 0; // Clear redo stack
   EraserCol=drawingCol;
+  context.closePath();
   canvas.removeEventListener("mousemove", onMouseMoveEraser);
 }
 
@@ -30,7 +31,7 @@ function onMouseUpEraser() {
 //   EraserCol = colPicker.value;
 // });
 
-function draw() {
+function eraserDraw() {
   context.beginPath();
   context.strokeStyle = EraserCol;
   context.lineWidth = lineWidth;
@@ -47,7 +48,7 @@ function onMouseMoveEraser(evt) {
   const x = evt.clientX;
   const y = evt.clientY;
   points.push({ x, y });
-  draw();
+  eraserDraw();
 }
 canvas.addEventListener("mouseleave", () => {
   canvas.removeEventListener("mouseup", onMouseUpEraser);

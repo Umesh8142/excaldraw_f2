@@ -173,6 +173,7 @@ cursor: pointer;
   height: 70%;
 }
 #canvas {
+  background:transparent;
   width: 100vw;
   height: 100vh;
   display: none;
@@ -274,6 +275,10 @@ cursor: pointer;
 
 #colors>div:hover{
   cursor: pointer;
+}
+
+#save :hover{
+cursor: pointer;
 }
 
 @media screen and (max-width: 900px) {
