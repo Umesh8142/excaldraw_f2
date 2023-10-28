@@ -3,9 +3,9 @@ const context = canvas.getContext("2d");
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
-canvas.style.backgroundColor = 'white';
-context.fillStyle = "white";
-let drawingCol = "black";
+canvas.style.backgroundColor = 'black';
+context.fillStyle = "black";
+let drawingCol = "white";
 let lineWidth = "2";
 
 // opacity changing

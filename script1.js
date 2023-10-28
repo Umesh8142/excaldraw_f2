@@ -269,10 +269,12 @@ const save = document.getElementById("save");
 save.addEventListener(
   "click",
   () => {
-    canvas.style.backgroundColor = "white";
-    context.fillStyle = "white";
-    context.fillRect(0, 0, canvas.width, canvas.height);
-    var imgData = canvas.toDataURL("image/jpeg", -1.0);
+    // canvas.style.backgroundColor = "white";
+    // context.fillStyle = "white";
+    // context.fillRect(0, 0, canvas.width, canvas.height);
+    // redraw();
+    // context.fillStyle = "white";
+    var imgData = canvas.toDataURL("image/jpeg");
     var pdf = new jsPDF("p", "px");
     var width = pdf.internal.pageSize.width;
     var height = pdf.internal.pageSize.height;
