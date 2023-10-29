@@ -52,5 +52,6 @@ function onMouseMoveEraser(evt) {
   eraserDraw();
 }
 canvas.addEventListener("mouseleave", () => {
+  context.strokeStyle = drawingCol;
   canvas.removeEventListener("mouseup", onMouseUpEraser);
 });
