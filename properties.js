@@ -13,6 +13,7 @@ context.lineCap = "round";
 // default properties
 canvas.style.backgroundColor = "black";
 context.fillStyle = "black";
+let EraserCol = "black";
 let drawingCol = "white";
 let lineWidth = 2;
 let opacityValue = 1;

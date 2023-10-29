@@ -147,6 +147,7 @@ function onRectClick() {
 
 Eraser.addEventListener("click", onEraserClick);
 function onEraserClick() {
+  console.log("eraser")
   Eraser.classList.toggle("active");
   isEraserActive = !isEraserActive;
   if (isEraserActive) {

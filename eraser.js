@@ -1,8 +1,9 @@
-let EraserCol = "";
+
 
 //mouse down start
 function onMouseDownEraser() {
-  EraserCol = "white";
+  console.log("eraser")
+  EraserCol = "black";
   points = [];
   canvas.addEventListener("mousemove", onMouseMoveEraser);
   canvas.addEventListener("mouseup", onMouseUpEraser);
@@ -18,7 +19,7 @@ function onMouseUpEraser() {
     lineOpacity:1
   });
   redoStack.length = 0; // Clear redo stack
-  EraserCol=drawingCol;
+  // EraserCol=drawingCol;
   context.closePath();
   canvas.removeEventListener("mousemove", onMouseMoveEraser);
 }

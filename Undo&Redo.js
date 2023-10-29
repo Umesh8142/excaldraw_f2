@@ -69,6 +69,8 @@ function reDrawLine(object) {
   context.beginPath();
   context.moveTo(points.x1, points.y1);
   context.lineTo(points.x2, points.y2);
+  context.lineJoin = "round";
+  context.lineCap = "round";
   context.stroke();
   context.closePath();
 }

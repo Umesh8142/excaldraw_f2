@@ -21,7 +21,7 @@ function onMouseMove(evt) {
 }
 
 function draw(points) {
-  console.log("umesh");
+  // console.log("umesh");
   // context.clearRect(0,0,canvas.width,canvas.height);
 
   context.strokeStyle = drawingCol;
@@ -32,6 +32,8 @@ function draw(points) {
     context.beginPath();
     context.moveTo(points[i - 1].x, points[i - 1].y);
     context.lineTo(points[i].x, points[i].y);
+    context.lineJoin = "round";
+    context.lineCap = "round";
     context.stroke();
     context.closePath();
   }

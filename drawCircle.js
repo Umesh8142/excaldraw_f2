@@ -8,7 +8,7 @@ let radius;
 // get center of circle
 function centerOfCircle(evt) {
 
-  context.clearRect(0, 0, canvas.width, canvas.height);
+  // context.clearRect(0, 0, canvas.width, canvas.height);
   CenterX = evt.clientX;
   CenterY = evt.clientY;
   canvas.addEventListener("mousemove", changeRadius);
@@ -33,15 +33,16 @@ function changeRadius(evt) {
   context.lineWidth = lineWidth;
   context.strokeStyle = drawingCol;
   context.fillStyle = "white";
-  rx = Math.pow(evt.clientX - CenterX, 2);
-  ry = Math.pow(evt.clientY - CenterY, 2);
-  radius = Math.sqrt(rx + ry);
   context.beginPath();
+  rx =(evt.clientX - CenterX)**2;
+  ry = (evt.clientY - CenterY)**2;
+  radius = Math.sqrt(rx + ry);
   context.clearRect(0, 0, canvas.width, canvas.height);
+  context.arc(CenterX, CenterY, radius, 0, Math.PI * 2);
   redraw();
   context.moveTo(evt.clientX, evt.clientY);
-  context.arc(CenterX, CenterY, radius, 0, Math.PI * 2);
-  context.closePath();
+  
+  // context.closePath();
   context.stroke();
 }
 function draWCircle(evt) {
