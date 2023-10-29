@@ -26,6 +26,7 @@ function redo() {
 
 // redrawing
 function redraw() {
+  if(undoStack.length==0) return;
   context.clearRect(0, 0, canvas.width, canvas.height);
   for (let i = 0; i < undoStack.length; i++) {
     if (undoStack[i].object === "freehand") {
@@ -79,13 +80,9 @@ function reDrawCircle(object) {
   context.strokeStyle = object.color;
   context.lineWidth = object.lineWidth;
   context.globalAlpha = object.lineOpacity;
-  // context.fillStyle='white';
   points = object.coord;
   context.beginPath();
   context.arc(points.CenterX, points.CenterY, points.radius, 0, Math.PI * 2);
-  // context.closePath();
+  context.closePath();
   context.stroke();
-  // context.fill();
-
-  // console.log("circle drawn")
 }

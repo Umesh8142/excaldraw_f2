@@ -1,25 +1,44 @@
-
-
 //mouse down start
 function onMouseDownEraser() {
-  console.log("eraser")
   EraserCol = "black";
+  console.log(EraserCol);
   points = [];
   canvas.addEventListener("mousemove", onMouseMoveEraser);
   canvas.addEventListener("mouseup", onMouseUpEraser);
 }
 
+// on mouse move erasing
+function onMouseMoveEraser(evt) {
+  const x = evt.clientX;
+  const y = evt.clientY;
+  points.push({ x, y });
+  erase();
+}
+
+function erase() {
+  context.strokeStyle = EraserCol;
+  context.lineWidth = lineWidth;
+  context.globalAlpha = 1;
+  for (let i = 1; i < points.length; i++) {
+    context.beginPath();
+    context.moveTo(points[i - 1].x, points[i - 1].y);
+    context.lineTo(points[i].x, points[i].y);
+    context.closePath();
+    context.stroke();
+  }
+}
+
 // mouseup end
 function onMouseUpEraser() {
+  context.strokeStyle = drawingCol;
   undoStack.push({
     object: "freehand",
     coord: points.slice(),
     color: EraserCol,
-    lineWidth: context.lineWidth,
-    lineOpacity:1
+    lineWidth: lineWidth,
+    lineOpacity: 1,
   });
   redoStack.length = 0; // Clear redo stack
-  // EraserCol=drawingCol;
   context.closePath();
   canvas.removeEventListener("mousemove", onMouseMoveEraser);
 }
@@ -32,26 +51,6 @@ function onMouseUpEraser() {
 //   EraserCol = colPicker.value;
 // });
 
-function eraserDraw() {
-  context.beginPath();
-  context.strokeStyle = EraserCol;
-  context.lineWidth = lineWidth;
-  context.globalAlpha=1;
-  context.moveTo(points[0].x, points[0].y);
-  context.globalAlpha = 1;
-  for (let i = 1; i < points.length; i++) {
-    context.lineTo(points[i].x, points[i].y);
-  }
-  context.stroke();
-}
-
-function onMouseMoveEraser(evt) {
-  const x = evt.clientX;
-  const y = evt.clientY;
-  points.push({ x, y });
-  eraserDraw();
-}
 canvas.addEventListener("mouseleave", () => {
-  context.strokeStyle = drawingCol;
   canvas.removeEventListener("mouseup", onMouseUpEraser);
 });
