@@ -22,15 +22,19 @@ function onMouseMove(evt) {
 
 function draw(points) {
   console.log("umesh");
-  context.beginPath();
+  // context.clearRect(0,0,canvas.width,canvas.height);
+
   context.strokeStyle = drawingCol;
   context.lineWidth = lineWidth;
   context.globalAlpha = opacityValue;
-  context.moveTo(points[0].x, points[0].y);
+
   for (let i = 1; i < points.length; i++) {
+    context.beginPath();
+    context.moveTo(points[i - 1].x, points[i - 1].y);
     context.lineTo(points[i].x, points[i].y);
+    context.stroke();
+    context.closePath();
   }
-  context.stroke();
 }
 
 // mouseup end

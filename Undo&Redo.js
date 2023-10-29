@@ -9,7 +9,7 @@ undoButton1.addEventListener("click", undo);
 redoButton1.addEventListener("click", redo);
 
 function undo() {
-  console.log("undo")
+  console.log("undo");
   if (undoStack.length > 0) {
     redoStack.push(undoStack.pop());
     redraw();
@@ -17,7 +17,7 @@ function undo() {
 }
 
 function redo() {
-  console.log("redo")
+  console.log("redo");
   if (redoStack.length > 0) {
     undoStack.push(redoStack.pop());
     redraw();
@@ -30,30 +30,28 @@ function redraw() {
   for (let i = 0; i < undoStack.length; i++) {
     if (undoStack[i].object === "freehand") {
       freeHand(undoStack[i]);
-    } 
-    else if (undoStack[i].object === "rectangle") {
+    } else if (undoStack[i].object === "rectangle") {
       reDrawRect(undoStack[i]);
-    }else if(undoStack[i].object === "line"){
+    } else if (undoStack[i].object === "line") {
       reDrawLine(undoStack[i]);
-    }else if(undoStack[i].object === "circle"){
+    } else if (undoStack[i].object === "circle") {
       reDrawCircle(undoStack[i]);
     }
-
   }
 }
 function freeHand(object) {
-  context.beginPath();
   context.strokeStyle = object.color;
   context.lineWidth = object.lineWidth;
   context.globalAlpha = object.lineOpacity;
   points = object.coord;
-  context.moveTo(points[0].x, points[0].y);
   for (let i = 1; i < points.length; i++) {
+    context.beginPath();
+    context.moveTo(points[i - 1].x, points[i - 1].y);
     context.lineTo(points[i].x, points[i].y);
+    context.stroke();
+    context.closePath();
   }
-  context.stroke();
 }
-
 
 function reDrawRect(object) {
   context.strokeStyle = object.color;
@@ -68,10 +66,10 @@ function reDrawLine(object) {
   context.lineWidth = object.lineWidth;
   context.globalAlpha = object.lineOpacity;
   points = object.coord;
-  context.beginPath()
-  context.moveTo(points.x1,points.y1);
+  context.beginPath();
+  context.moveTo(points.x1, points.y1);
   context.lineTo(points.x2, points.y2);
-  context.stroke()
+  context.stroke();
   context.closePath();
 }
 
@@ -81,11 +79,11 @@ function reDrawCircle(object) {
   context.globalAlpha = object.lineOpacity;
   // context.fillStyle='white';
   points = object.coord;
-  context.beginPath()
+  context.beginPath();
   context.arc(points.CenterX, points.CenterY, points.radius, 0, Math.PI * 2);
   // context.closePath();
-  context.stroke()
+  context.stroke();
   // context.fill();
-  
+
   // console.log("circle drawn")
 }
