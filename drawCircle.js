@@ -5,7 +5,6 @@ let ry;
 let radius;
 // let Circle = []; // Store the Circle
 
-
 // get center of circle
 function centerOfCircle(evt) {
   CenterX = evt.clientX;
@@ -13,32 +12,20 @@ function centerOfCircle(evt) {
   canvas.addEventListener("mousemove", changeRadius);
   canvas.addEventListener("mouseup", draWCircle);
 }
-// Redraw all Circle
-// function drawCircle(object) {
-//   Circle.forEach((object) => {
-//     context.strokeStyle = object.color;
-//     context.lineWidth = object.lineWidth;
-//     context.globalAlpha = object.lineOpacity;
-//     points = object.coord;
-//     context.arc(points.startX, points.startY, points.endx, points.endy);
-//   });
-// }
-
-
 
 // fix radius
 function changeRadius(evt) {
   context.lineWidth = lineWidth;
   context.strokeStyle = drawingCol;
-  context.beginPath();
   rx = (evt.clientX - CenterX) ** 2;
   ry = (evt.clientY - CenterY) ** 2;
   radius = Math.sqrt(rx + ry);
-  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  context.beginPath();
+  redraw();
+  context.moveTo(evt.clientX, evt.clientY);
   context.arc(CenterX, CenterY, radius, 0, Math.PI * 2);
   context.stroke();
-  redraw();
-  // context.moveTo(evt.clientX, evt.clientY);
   context.closePath();
 }
 function draWCircle(evt) {
@@ -57,10 +44,9 @@ function draWCircle(evt) {
     coord: { CenterX, CenterY, radius },
     color: drawingCol,
     lineWidth: lineWidth,
-    lineOpacity:opacityValue ,
+    lineOpacity: opacityValue,
     fill: context.fillStyle,
   });
-  // console.log(undoStack);
 }
 canvas.addEventListener("mouseleave", () => {
   canvas.removeEventListener("mouseup", draWCircle);
